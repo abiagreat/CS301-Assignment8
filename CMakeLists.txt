@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.23)
-project(CS301_Assignment81)
+project(CS301_Assignment8)
 
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
 
-add_executable(CS301_Assignment81
+add_executable(CS301_Assignment8
         Heap.h
         HeapSort.h
         PQ.in
