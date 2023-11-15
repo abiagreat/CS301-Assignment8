@@ -1,7 +1,7 @@
 // Group 3: Abia Khan and Mario Salinas
-// NetID: ac6212 and ry7931 
+// NetID: ac6212 and ry7931
 // Work Cited: Dale, Nell. C++ Plus Data Structures, 6th Edition.
-// CS 301-03 
+// CS 301-03
 // 11/11/23
 
 
@@ -20,9 +20,9 @@ int main()
   ofstream outFile;      // file containing output
   string inFileName;     // input file external name
   string outFileName;    // output file external name
-  string outputLabel;     
+  string outputLabel;
   string command;        // operation to be executed
-  
+
   ItemType item;
   PQType<int> queue(5);
   int numCommands;
@@ -45,50 +45,45 @@ int main()
 
 
   numCommands = 0;
-  while (command != "Quit")
-  { 
-    try 
-    {
-      if (command == "Enqueue")
+  while (command != "Quit"){
+  while (numCommands <= 50)
       {
-        inFile >> item; 
-        queue.Enqueue(item);
-        outFile << item << " is enqueued." << endl;
+          try {
+              if (command == "Enqueue") {
+                  inFile >> item;
+                  queue.Enqueue(item);
+                  outFile << item << " is enqueued." << endl;
+              } else if (command == "Dequeue") {
+                  queue.Dequeue(item);
+                  outFile << item << " is dequeued. " << endl;
+              } else if (command == "IsEmpty")
+                  if (queue.IsEmpty())
+                      outFile << "Queue is empty." << endl;
+                  else
+                      outFile << "Queue is not empty." << endl;
+
+              else if (command == "IsFull")
+                  if (queue.IsFull())
+                      outFile << "Queue is full." << endl;
+                  else outFile << "Queue is not full." << endl;
+              else if (command == "MakeEmpty")
+                  queue.MakeEmpty();
+          }
+          catch (FullPQ) {
+              outFile << "FullQueue exception thrown." << endl;
+          }
+
+          catch (EmptyPQ) {
+              outFile << "EmtpyQueue exception thrown." << endl;
+          }
+          numCommands++;
+          cout << " Command number " << numCommands << " completed."
+               << endl;
+          inFile >> command;
       }
-      else if (command == "Dequeue")
-      {
-        queue.Dequeue(item); 
-        outFile<< item  << " is dequeued. " << endl;
-      } 
-      else if (command == "IsEmpty") 
-        if (queue.IsEmpty())
-          outFile << "Queue is empty." << endl;
-        else 
-          outFile << "Queue is not empty." << endl;
-             
-      else if (command == "IsFull")
-        if (queue.IsFull())
-          outFile << "Queue is full." << endl;
-        else outFile << "Queue is not full."  << endl; 
-      else if (command == "MakeEmpty")
-        queue.MakeEmpty();    
-    }
-    catch (FullPQ)
-    {
-      outFile << "FullQueue exception thrown." << endl;
-    }
-    
-    catch (EmptyPQ)
-    {
-      outFile << "EmtpyQueue exception thrown." << endl;
-    }    
-    numCommands++;
-    cout <<  " Command number " << numCommands << " completed." 
-         << endl;
-    inFile >> command;
- 
+
   };
- 
+
   cout << "Testing completed."  << endl;
   inFile.close();
   outFile.close();
