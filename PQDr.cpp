@@ -81,8 +81,10 @@ int main()
                << endl;
           inFile >> command;
       }
-
-  };
+        if (numCommands > 50) {
+            break;
+        }
+  }
 
   cout << "Testing completed."  << endl;
   inFile.close();
